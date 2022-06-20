@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const path = require('path');
+const cors = require('cors');
 
 const assets_route = require('./middlewares/assets_provide/assets');
 const score_route = require('./middlewares/score_save/score');
@@ -9,6 +10,7 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.use('/assets', express.static(path.join(__dirname, '/static')));
 app.use('/getAssets', assets_route);
