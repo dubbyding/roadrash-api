@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 
 const bikeCheck = require('../../handlers/assets_provide/bike_color');
-const getCarsList = require('../../handlers/assets_provide/cars_get');
+const getAssetsList = require('../../handlers/assets_provide/cars_get');
 
 const router = express.Router();
 
@@ -28,14 +28,90 @@ router.get('/bikes/:color', async (request, response) => {
 	}
 });
 
+/**
+ * Get list of cars assets
+ */
 router.get('/cars', async (request, response) => {
 	const currentHost = request.headers.host;
 	const protocol = request.protocol;
+	const currentAssetsPath = '../../static/images/car-assets';
 
 	try {
-		let carsList = await getCarsList();
+		let carsList = await getAssetsList(currentAssetsPath);
 		carsList = carsList.map((value) => {
 			return `${protocol}://${currentHost}/assets/images/car-assets/${value}`;
+		});
+		response.status(200).send({
+			list: carsList,
+		});
+	} catch (e) {
+		console.log(e);
+		response.status(404).send({
+			err: 'Error loading Image',
+		});
+	}
+});
+
+/**
+ * Get list of farm assets
+ */
+router.get('/farm', async (request, response) => {
+	const currentHost = request.headers.host;
+	const protocol = request.protocol;
+	const currentAssetsPath = '../../static/images/Farm-assets';
+
+	try {
+		let carsList = await getAssetsList(currentAssetsPath);
+		carsList = carsList.map((value) => {
+			return `${protocol}://${currentHost}/assets/images/Farm-assets/${value}`;
+		});
+		response.status(200).send({
+			list: carsList,
+		});
+	} catch (e) {
+		console.log(e);
+		response.status(404).send({
+			err: 'Error loading Image',
+		});
+	}
+});
+
+/**
+ * Get list of road assets
+ */
+router.get('/road', async (request, response) => {
+	const currentHost = request.headers.host;
+	const protocol = request.protocol;
+	const currentAssetsPath = '../../static/images/road-assets';
+
+	try {
+		let carsList = await getAssetsList(currentAssetsPath);
+		carsList = carsList.map((value) => {
+			return `${protocol}://${currentHost}/assets/images/road-assets/${value}`;
+		});
+		response.status(200).send({
+			list: carsList,
+		});
+	} catch (e) {
+		console.log(e);
+		response.status(404).send({
+			err: 'Error loading Image',
+		});
+	}
+});
+
+/**
+ * Get list of tree assets
+ */
+router.get('/tree', async (request, response) => {
+	const currentHost = request.headers.host;
+	const protocol = request.protocol;
+	const currentAssetsPath = '../../static/images/tree-assets';
+
+	try {
+		let carsList = await getAssetsList(currentAssetsPath);
+		carsList = carsList.map((value) => {
+			return `${protocol}://${currentHost}/assets/images/tree-assets/${value}`;
 		});
 		response.status(200).send({
 			list: carsList,
