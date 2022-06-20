@@ -5,6 +5,7 @@ const bikeCheck = require('./../../handlers/assets_provide/bike_color');
 
 const router = express.Router();
 
+/* A router.get function that is used to get the color of the bike. */
 router.get('/:color', async (request, response) => {
 	const currentHost = request.headers.host;
 	const protocol = request.protocol;

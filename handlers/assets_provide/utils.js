@@ -1,4 +1,4 @@
-const { readdir } = require('fs/promises');
+const { promises: fs } = require('fs');
 
 /**
  * This function returns a promise that resolves to an array of strings, each string being the name of
@@ -7,7 +7,7 @@ const { readdir } = require('fs/promises');
  * @returns An array of the contents of the folder.
  */
 const folderContents = (path) => {
-	return readdir(path);
+	return fs.readdir(path);
 };
 
 module.exports = { folderContents };
