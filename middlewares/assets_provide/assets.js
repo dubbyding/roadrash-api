@@ -92,7 +92,6 @@ router.get('/cars', async (request, response) => {
 			list: carsList,
 		});
 	} catch (e) {
-		console.log(e);
 		response.status(404).send({
 			err: 'Error loading Image',
 		});
@@ -116,7 +115,6 @@ router.get('/farm', async (request, response) => {
 			list: carsList,
 		});
 	} catch (e) {
-		console.log(e);
 		response.status(404).send({
 			err: 'Error loading Image',
 		});
@@ -140,7 +138,6 @@ router.get('/road', async (request, response) => {
 			list: carsList,
 		});
 	} catch (e) {
-		console.log(e);
 		response.status(404).send({
 			err: 'Error loading Image',
 		});
@@ -164,7 +161,6 @@ router.get('/tree', async (request, response) => {
 			list: carsList,
 		});
 	} catch (e) {
-		console.log(e);
 		response.status(404).send({
 			err: 'Error loading Image',
 		});

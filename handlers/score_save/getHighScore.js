@@ -7,6 +7,7 @@
  */
 const getHighScore = (object) => {
 	return new Promise((resolve, reject) => {
+		/* Sorting the array of objects by the score property. */
 		let result = object.sort((a, b) => {
 			return parseInt(a.score) - parseInt(b.score);
 		});
