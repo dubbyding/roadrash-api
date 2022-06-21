@@ -28,6 +28,53 @@ router.get('/bikes/:color', async (request, response) => {
 	}
 });
 
+router.get('/bikes', async (request, response) => {
+	const currentHost = request.headers.host;
+	const protocol = request.protocol;
+	const currentAssetsPath = '../../static/images/bike-assets';
+
+	try {
+		let bikeList = await getAssetsList(currentAssetsPath);
+		bikeList = bikeList
+			.filter((value) => {
+				return value != 'police.png';
+			})
+			.map((value) => {
+				return `${protocol}://${currentHost}/assets/images/bike-assets/${value}`;
+				return;
+			});
+		response.status(200).send({
+			list: bikeList,
+		});
+	} catch (e) {
+		response.status(404).send({
+			err: 'Error loading Image',
+		});
+	}
+});
+
+router.get('/police', async (request, response) => {
+	const currentHost = request.headers.host;
+	const protocol = request.protocol;
+	const currentAssetsPath = '../../static/images/bike-assets';
+
+	try {
+		let bikeList = await getAssetsList(currentAssetsPath);
+		bikeList = bikeList
+			.filter((value) => value == 'police.png')
+			.map((value) => {
+				return `${protocol}://${currentHost}/assets/images/bike-assets/${value}`;
+			});
+		response.status(200).send({
+			list: bikeList,
+		});
+	} catch (e) {
+		response.status(404).send({
+			err: 'Error loading Image',
+		});
+	}
+});
+
 /**
  * Get list of cars assets
  */
