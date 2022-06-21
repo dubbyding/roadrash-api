@@ -6,29 +6,7 @@ const getAssetsList = require('../../handlers/assets_provide/cars_get');
 
 const router = express.Router();
 
-/**
- *  A router.get function that is used to get the color of the bike and return the link of the bike
- */
-router.get('/bikes/:color', async (request, response) => {
-	const currentHost = request.headers.host;
-	const protocol = request.protocol;
-	try {
-		let color = request.params.color;
-		let bikeAvailable = await bikeCheck(color);
-		if (bikeAvailable) {
-			let pathToReturn = `${protocol}://${currentHost}/assets/images/bike-assets/${color}.png`;
-			response.status(200).send({
-				link: pathToReturn,
-			});
-		}
-	} catch {
-		response.status(404).send({
-			err: 'Bike Color not found',
-		});
-	}
-});
-
-router.get('/bikes', async (request, response) => {
+router.get('/bikes/player', async (request, response) => {
 	const currentHost = request.headers.host;
 	const protocol = request.protocol;
 	const currentAssetsPath = '../../static/images/bike-assets';
@@ -53,7 +31,29 @@ router.get('/bikes', async (request, response) => {
 	}
 });
 
-router.get('/police', async (request, response) => {
+/**
+ *  A router.get function that is used to get the color of the bike and return the link of the bike
+ */
+router.get('/bikes/player/:color', async (request, response) => {
+	const currentHost = request.headers.host;
+	const protocol = request.protocol;
+	try {
+		let color = request.params.color;
+		let bikeAvailable = await bikeCheck(color);
+		if (bikeAvailable) {
+			let pathToReturn = `${protocol}://${currentHost}/assets/images/bike-assets/${color}.png`;
+			response.status(200).send({
+				link: pathToReturn,
+			});
+		}
+	} catch {
+		response.status(404).send({
+			err: 'Bike Color not found',
+		});
+	}
+});
+
+router.get('/bikes/police', async (request, response) => {
 	const currentHost = request.headers.host;
 	const protocol = request.protocol;
 	const currentAssetsPath = '../../static/images/bike-assets';
