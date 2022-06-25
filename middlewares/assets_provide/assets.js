@@ -107,12 +107,12 @@ router.get('/farm', async (request, response) => {
 	const currentAssetsPath = '../../static/images/Farm-assets';
 
 	try {
-		let carsList = await getAssetsList(currentAssetsPath);
-		carsList = carsList.map((value) => {
+		let farmList = await getAssetsList(currentAssetsPath);
+		farmList = farmList.map((value) => {
 			return `${protocol}://${currentHost}/assets/images/Farm-assets/${value}`;
 		});
 		response.status(200).send({
-			list: carsList,
+			list: farmList,
 		});
 	} catch (e) {
 		response.status(404).send({
@@ -130,12 +130,12 @@ router.get('/road', async (request, response) => {
 	const currentAssetsPath = '../../static/images/road-assets';
 
 	try {
-		let carsList = await getAssetsList(currentAssetsPath);
-		carsList = carsList.map((value) => {
+		let roadList = await getAssetsList(currentAssetsPath);
+		roadList = roadList.map((value) => {
 			return `${protocol}://${currentHost}/assets/images/road-assets/${value}`;
 		});
 		response.status(200).send({
-			list: carsList,
+			list: roadList,
 		});
 	} catch (e) {
 		response.status(404).send({
@@ -153,12 +153,35 @@ router.get('/tree', async (request, response) => {
 	const currentAssetsPath = '../../static/images/tree-assets';
 
 	try {
-		let carsList = await getAssetsList(currentAssetsPath);
-		carsList = carsList.map((value) => {
+		let treeList = await getAssetsList(currentAssetsPath);
+		treeList = treeList.map((value) => {
 			return `${protocol}://${currentHost}/assets/images/tree-assets/${value}`;
 		});
 		response.status(200).send({
-			list: carsList,
+			list: treeList,
+		});
+	} catch (e) {
+		response.status(404).send({
+			err: 'Error loading Image',
+		});
+	}
+});
+
+/**
+ * Get list of building assets
+ */
+router.get('/building', async (request, response) => {
+	const currentHost = request.headers.host;
+	const protocol = request.protocol;
+	const currentAssetsPath = '../../static/images/building-assets';
+
+	try {
+		let buildingList = await getAssetsList(currentAssetsPath);
+		buildingList = buildingList.map((value) => {
+			return `${protocol}://${currentHost}/assets/images/building-assets/${value}`;
+		});
+		response.status(200).send({
+			list: buildingList,
 		});
 	} catch (e) {
 		response.status(404).send({
