@@ -190,4 +190,23 @@ router.get('/building', async (request, response) => {
 	}
 });
 
+router.get('/bikeAudio', async (request, response) => {
+	const currentHost = request.headers.host;
+	const protocol = request.protocol;
+	const currentAssetsPath = '../../static/audio';
+	try {
+		let audioList = await getAssetsList(currentAssetsPath);
+		audioList = audioList.map((value) => {
+			return `${protocol}://${currentHost}/assets/audio/${value}`;
+		});
+		response.status(200).send({
+			list: audioList,
+		});
+	} catch (e) {
+		response.status(404).send({
+			err: 'Error Loading Audio',
+		});
+	}
+});
+
 module.exports = router;
