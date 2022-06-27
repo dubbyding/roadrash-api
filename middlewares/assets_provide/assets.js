@@ -209,4 +209,13 @@ router.get('/bikeAudio', async (request, response) => {
 	}
 });
 
+router.get('/startingImage', (request, response) => {
+	const currentHost = request.headers.host;
+	const protocol = request.protocol;
+
+	response.status(200).send({
+		img: `${protocol}://${currentHost}/assets/images/5439873.png`,
+	});
+});
+
 module.exports = router;
