@@ -190,6 +190,9 @@ router.get('/building', async (request, response) => {
 	}
 });
 
+/**
+ * Route to get bike audio
+ */
 router.get('/bikeAudio', async (request, response) => {
 	const currentHost = request.headers.host;
 	const protocol = request.protocol;
@@ -209,12 +212,27 @@ router.get('/bikeAudio', async (request, response) => {
 	}
 });
 
+/**
+ * Route to get starting Image
+ */
 router.get('/startingImage', (request, response) => {
 	const currentHost = request.headers.host;
 	const protocol = request.protocol;
 
 	response.status(200).send({
 		img: `${protocol}://${currentHost}/assets/images/5439873.png`,
+	});
+});
+
+/**
+ * Route to get background images
+ */
+router.get('/backgroundImage', (request, response) => {
+	const currentHost = request.headers.host;
+	const protocol = request.protocol;
+
+	response.status(200).send({
+		img: `${protocol}://${currentHost}/assets/images/background-assets/background.png`,
 	});
 });
 
