@@ -220,7 +220,7 @@ router.get('/startingImage', (request, response) => {
 	const protocol = request.protocol;
 
 	response.status(200).send({
-		img: `${protocol}://${currentHost}/assets/images/5439873.png`,
+		img: `${protocol}://${currentHost}/assets/images/background-assets/5439873.png`,
 	});
 });
 
@@ -233,6 +233,18 @@ router.get('/backgroundImage', (request, response) => {
 
 	response.status(200).send({
 		img: `${protocol}://${currentHost}/assets/images/background-assets/background.png`,
+	});
+});
+
+/**
+ * Route to get busted Image
+ */
+router.get('/bustedImage', (request, response) => {
+	const currentHost = request.headers.host;
+	const protocol = request.protocol;
+
+	response.status(200).send({
+		img: `${protocol}://${currentHost}/assets/images/background-assets/busted.jpg`,
 	});
 });
 
